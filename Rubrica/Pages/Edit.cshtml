@@ -1,0 +1,63 @@
+﻿@page
+@model Rubrica.Pages.EditModel
+
+<div class="row py-3">
+    <div class="col-12">
+        <h1>Modifica</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-2">
+        <form method="post" id="contatto-update">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Contatto.Id" />
+            <div class="form-group">
+                <label asp-for="Contatto.Nome" class="control-label py-1">Nome</label>
+                <input asp-for="Contatto.Nome" class="form-control" required />
+                <span asp-validation-for="Contatto.Nome" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Contatto.Cognome" class="control-label py-1">Cognome</label>
+                <input asp-for="Contatto.Cognome" class="form-control" required />
+                <span asp-validation-for="Contatto.Cognome" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Contatto.Sesso" class="control-label py-1">Sesso</label>
+                <select asp-for="Contatto.Sesso" class="form-control form-select" required>
+                    <option value="M">Maschio</option>
+                    <option value="F">Femmina</option>
+                </select>
+                <span asp-validation-for="Contatto.Sesso" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Contatto.DataNascita" class="control-label py-1">Data di nascita</label>
+                <input asp-for="Contatto.DataNascita" class="form-control" type="date" />
+                <span asp-validation-for="Contatto.DataNascita" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Contatto.NumeroTelefono" class="control-label py-1">Numero di telefono</label>
+                <input asp-for="Contatto.NumeroTelefono" class="form-control" id="phone" />
+                <span asp-validation-for="Contatto.NumeroTelefono" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Contatto.Email" class="control-label py-1">Email</label>
+                <input asp-for="Contatto.Email" class="form-control" id="email" required />
+                <span asp-validation-for="Contatto.Email" class="text-danger"></span>
+            </div>
+            <div class="row pt-3">
+                <div class="col-12 form-group">
+                    <button type="submit" class="btn btn-primary">Salva</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="row pt-3">
+    <div class="col-12">
+        <a asp-page="./Index" class="btn btn-primary">Torna alla lista</a>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

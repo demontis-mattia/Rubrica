@@ -1,0 +1,33 @@
+﻿@page
+@model Rubrica.Pages.DeleteModel
+
+<div class="row py-3">
+    <div class="col-12">
+        <h1>Elimina</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <h3>Sei sicuro di voler eliminare questo contatto?</h3>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        @foreach (var item in Model.Contatto.GetType().GetProperties().Where(x => x.Name != "Id"))
+        {
+            <div class="row py-2">
+                <div class="col-2 fw-bold">
+                    @item.Name
+                </div>
+                <div class="col-10">
+                    @(item.Name == "Sesso" ? (item.GetValue(Model.Contatto)!.Equals("M") ? "Maschio" : "Femmina") : item.GetValue(Model.Contatto))
+                </div>
+            </div>
+        }
+        <form method="post" class="pt-3">
+            <input type="hidden" asp-for="Contatto.Id" />
+            <button type="submit" class="btn btn-danger">Elimina</button>
+            <a asp-page="./Index" class="btn btn-primary">Torna alla lista</a>
+        </form>
+    </div>
+</div>

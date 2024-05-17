@@ -1,0 +1,77 @@
+﻿@page
+@model Rubrica.Pages.IndexModel
+
+
+<div class="row py-3">
+    <div class="col-12">
+        <h1>Rubrica</h1>
+    </div>
+</div>
+<div class="row py-3">
+    <div class="col-12">
+        <a asp-page="Create" class="btn btn-primary">Crea contatto</a>
+    </div>
+</div>
+<div class="body">
+    <div class="row py-2 fw-bold bottom-line-dark">
+        <div class="col-1 text-truncate">
+            Nome
+        </div>
+        <div class="col-1 text-truncate">
+            Cognome
+        </div>
+        <div class="col-1 text-truncate">
+            Sesso
+        </div>
+        <div class="col-2 text-truncate">
+            Data di nascita
+        </div>
+        <div class="col-2 text-truncate">
+            Numero di telefono
+        </div>
+        <div class="col-2 text-truncate">
+            Email
+        </div>
+        <div class="col-1 text-truncate">
+            Città
+        </div>
+        <div class="col-2"></div>
+    </div>
+    @if(Model.Contatti.ToArray().Length == 0)
+    {
+        <h4 class="pt-3">
+            Nessun contatto salvato
+        </h4>
+    }
+    @foreach (var item in Model.Contatti)
+    {
+        <div class="row py-2 bottom-line-light">
+            <div class="col-1 mt-2 text-truncate">
+                @item.Nome
+            </div>
+            <div class="col-1 mt-2 text-truncate">
+                @item.Cognome
+            </div>
+            <div class="col-1 mt-2 text-truncate">
+                @(item.Sesso.Equals("M") ? "Maschio" : "Femmina")
+            </div>
+            <div class="col-2 mt-2 text-truncate">
+                @item.DataNascita
+            </div>
+            <div class="col-2 mt-2 text-truncate">
+                @item.NumeroTelefono
+            </div>
+            <div class="col-2 mt-2 text-truncate">
+                @item.Email
+            </div>
+            <div class="col-1 mt-2 text-truncate">
+                @item.Città
+            </div>
+            <div class="col-2">
+                <a asp-page="./Details" asp-route-id="@item.Id" class="btn btn-primary">Visualizza</a>
+                <a asp-page="./Edit" asp-route-id="@item.Id" class="btn btn-primary">Modifica</a>
+                <a asp-page="./Delete" asp-route-id="@item.Id" class="btn btn-danger">Elimina</a>
+            </div>
+        </div>
+    }
+</div>
